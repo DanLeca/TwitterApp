@@ -57,27 +57,29 @@ public class Search extends AppCompatActivity {
                 EditText editText = (EditText) view;
                 String enteredText = editText.getText().toString();
 
-                if(enteredText.toString().startsWith("@")) {
-                    if(excludeReplies.isChecked())   {
-                        searchQuery = "from:" + enteredText + " exclude:replies";
-                        setUpTimeline();
-                    }   else    {
-                        searchQuery = "from:" + enteredText;
-                        setUpTimeline();
-                    }
-                }   else    {
-                    if(excludeReplies.isChecked())   {
-                        searchQuery = enteredText + " exclude:replies";
-                        setUpTimeline();
-                    }   else    {
-                        searchQuery = enteredText;
-                        setUpTimeline();
-                    }
-                }
+                updateTimeline(enteredText);
             }
         });
+    }
 
-
+    private void updateTimeline(String enteredText) {
+        if(enteredText.toString().startsWith("@")) {
+            if(excludeReplies.isChecked())   {
+                searchQuery = "from:" + enteredText + " exclude:replies";
+                setUpTimeline();
+            }   else    {
+                searchQuery = "from:" + enteredText;
+                setUpTimeline();
+            }
+        }   else    {
+            if(excludeReplies.isChecked())   {
+                searchQuery = enteredText + " exclude:replies";
+                setUpTimeline();
+            }   else    {
+                searchQuery = enteredText;
+                setUpTimeline();
+            }
+        }
     }
 
     private void setUpTimeline() {

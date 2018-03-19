@@ -2,13 +2,10 @@ package com.example.daniel.twitterapp;
 
 import android.app.ListActivity;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
 import android.view.View;
 import android.webkit.CookieManager;
-import android.webkit.ValueCallback;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +31,7 @@ import retrofit2.Call;
  */
 
 public class Profile extends ListActivity {
+    android.webkit.CookieManager cookieManager = CookieManager.getInstance();
     private SwipeRefreshLayout mSwipeRefreshLayout;
     final private TwitterApiClient twitterApiClient = TwitterCore.getInstance().getApiClient();
     final private StatusesService statusesService = twitterApiClient.getStatusesService();
@@ -98,7 +96,7 @@ public class Profile extends ListActivity {
         });
     }
 
-    private void openAbout(View view)   {
+    public void openAbout(View view)   {
         //createProfile(null);
         //showMentions();
         Intent openSearch = new Intent(this, Search.class);
@@ -134,21 +132,11 @@ public class Profile extends ListActivity {
         });
     }
 
-    private void signOut(View view)  {
+    public void signOut(View view)  {
         android.webkit.CookieManager cookieManager = CookieManager.getInstance();
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            cookieManager.removeAllCookies(new ValueCallback<Boolean>() {
-                @Override
-                public void onReceiveValue(Boolean logoutValue) {
-                    Log.d("LoggedOut", "LogoutValue: " + logoutValue);
-                }
-            });
-        }
-        else cookieManager.removeAllCookie();
-
-        Intent signedOut = new Intent(this, MainActivity.class);
-        startActivity(signedOut);
+        cookieManager.removeAllCookie();
+        Intent signedIntent = new Intent (Profile.this, MainActivity.class);
+        startActivity(signedIntent);
     }
 
     public void createTweet(View view)  {
@@ -158,6 +146,8 @@ public class Profile extends ListActivity {
                 .session(session)
                 .createIntent();
         startActivity(intent);
+
+        Toast.makeText(this, "Working", Toast.LENGTH_SHORT).show();
     }
 
 }

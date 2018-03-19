@@ -53,7 +53,7 @@
         android:layout_marginBottom="23dp"
         android:clickable="true"
         android:focusable="true"
-        android:onClick="createTweet"
+        android:onClick="openAbout"
         app:srcCompat="@android:drawable/ic_dialog_info" />
 
     <android.support.design.widget.FloatingActionButton
