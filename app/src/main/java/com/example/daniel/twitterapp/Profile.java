@@ -25,7 +25,6 @@ import com.twitter.sdk.android.tweetui.UserTimeline;
 import java.util.List;
 
 import retrofit2.Call;
-
 /**
  * Created by Daniel on 13/01/2018.
  */
@@ -120,7 +119,6 @@ public class Profile extends ListActivity {
             call.enqueue(new Callback<List<Tweet>>()    {
             @Override
             public void success(Result<List<Tweet>> result) {
-
                 final FixedTweetTimeline timeline = new FixedTweetTimeline.Builder()
                         .setTweets(result.data)
                         .build();
@@ -128,6 +126,26 @@ public class Profile extends ListActivity {
             }
             public void failure(TwitterException exception) {
                 Toast.makeText(Profile.this, "Timeline failed to load", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    public void sendDirectMessage(View view) {
+        TwitterSession session = TwitterCore.getInstance().getSessionManager().getActiveSession();
+        DirectMessage dm = new DirectMessage(session);
+        Call<Tweet> call = dm.sendDirectMessage().sendPrivateMessage(null, "danjhart1",
+                "Just testing if this dm works for my app");
+
+        call.enqueue(new Callback<Tweet>() {
+            @Override
+            public void success(Result<Tweet> result) {
+                Toast.makeText(Profile.this, "DM sent", Toast.LENGTH_SHORT).show();
+                Profile.this.finish();
+            }
+
+            @Override
+            public void failure(TwitterException exception) {
+                Toast.makeText(Profile.this, exception.toString(), Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -146,8 +164,5 @@ public class Profile extends ListActivity {
                 .session(session)
                 .createIntent();
         startActivity(intent);
-
-        Toast.makeText(this, "Working", Toast.LENGTH_SHORT).show();
     }
-
 }
