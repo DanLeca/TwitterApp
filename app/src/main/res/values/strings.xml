@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">TwitterApp</string>
-    <string name="com.twitter.sdk.android.CONSUMER_KEY">zOIBuTwZ54oX3WOOCdBfHCUgz</string>
-    <string name="com.twitter.sdk.android.CONSUMER_SECRET">NB5nzCYvju11sCD5KW9N9TcDf7CUCBXpK4bjoNy2wKSqxSAS37</string>
+    <string name="com.twitter.sdk.android.CONSUMER_KEY"></string>
+    <string name="com.twitter.sdk.android.CONSUMER_SECRET"></string>
 
     <string name="toast_sign_out">You have successfully signed out</string>
     <string name="Auth_Fail">Authentication Failed</string>
