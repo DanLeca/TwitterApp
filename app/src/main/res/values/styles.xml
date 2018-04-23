@@ -1,15 +1,33 @@
 <resources>
-
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
     <style name="AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
     <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="tw__TweetLightStyle">
+        <item name="tw__container_bg_color">@color/tw__tweet_light_container_bg_color</item>
+        <item name="tw__primary_text_color">@color/tw__tweet_light_primary_text_color</item>
+        <item name="tw__action_color">@color/tw__tweet_action_color</item>
+        <item name="tw__action_highlight_color">@color/tw__tweet_action_light_highlight_color</item>
+    </style>
+
+    <style name="authFail">
+        <item name="textBold">true</item>
+        <item name="textColor">#000000</item>
+        <item name="textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="colorBackground">#ffffff</item>
+        <item name="solidBackground">true</item>
+        <item name="strokeWidth">3dp</item>
+        <item name="strokeColor">#000000</item>
+        <item name="iconStart">@mipmap/errormessage</item>
+        <item name="iconEnd">@mipmap/errormessage</item>
+        <item name="length">SHORT</item> LONG or SHORT
+        <item name="gravity">top</item> top or center
+        <item name="radius">5dp</item>
+    </style>
 </resources>

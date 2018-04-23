@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="all">
 
         <item
-            android:id="@+id/excludeReplies"
-            android:title="Exclude Replies"
-            android:checkable="true"/>
-        <item
             android:id="@+id/excludeMentions"
-            android:title="Exclude Mentions"
-            android:checkable="true"/>
+            android:checkable="true"
+            android:title="@string/excludeMentions" />
+        <item
+        android:id="@+id/excludeReplies"
+        android:checkable="true"
+        android:title="@string/excludeReplies" />
     </group>
+
+    <item
+        android:id="@+id/aboutButton"
+        android:title="@string/aboutSection" />
+
+    <item
+    android:id="@+id/logoutButton"
+    android:title="@string/logOut" />
 </menu>

@@ -1,9 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:twittersdk="http://schemas.android.com/tools"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="end"
+            android:layout_centerHorizontal="true"
+            android:ems="10"
+            android:hint="@string/searchField"
+            android:textColorHint="#000000"
+            android:inputType="text"
+            android:id="@+id/searchField"
+            android:visibility="visible"
+            android:background="#f5f5f5" />
+    </android.support.v7.widget.Toolbar>
 
     <TextView
         android:id="@+id/loading"
@@ -12,24 +38,25 @@
         android:gravity="center_horizontal|center_vertical"
         android:text="@string/noTweets" />
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/homeRefresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@id/my_toolbar">
 
-        <ListView android:id="@id/android:list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:divider="#e1e8ed"
-        android:dividerHeight="1dp"
-        android:drawSelectorOnTop="false"/>
-
+        <ListView
+            android:id="@+id/timelineView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:divider="#e1e8ed"
+            android:dividerHeight="1dp"
+            android:drawSelectorOnTop="false">
+        </ListView>
     </android.support.v4.widget.SwipeRefreshLayout>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+        android:id="@+id/tweetButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -42,32 +69,6 @@
         android:focusable="true"
         android:onClick="createTweet"
         app:srcCompat="@android:drawable/ic_menu_edit" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/floatingActionButton"
-        android:layout_alignLeft="@+id/floatingActionButton"
-        android:layout_alignStart="@+id/floatingActionButton"
-        android:layout_marginBottom="23dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:onClick="receiveDirectMessage"
-        app:srcCompat="@android:drawable/ic_dialog_info" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButton3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/floatingActionButton2"
-        android:layout_alignLeft="@+id/floatingActionButton2"
-        android:layout_alignStart="@+id/floatingActionButton2"
-        android:layout_marginBottom="25dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:onClick="signOut"
-        app:srcCompat="@drawable/tw__composer_close" />
 
 </RelativeLayout>
 

@@ -10,7 +10,6 @@ import com.twitter.sdk.android.core.TwitterApiClient;
 import com.twitter.sdk.android.core.TwitterCore;
 import com.twitter.sdk.android.core.TwitterException;
 import com.twitter.sdk.android.core.models.Tweet;
-import com.twitter.sdk.android.core.services.FavoriteService;
 import com.twitter.sdk.android.core.services.StatusesService;
 
 import retrofit2.Call;
@@ -78,35 +77,4 @@ public class Interactions extends Activity {
         });
     }
 
-    private void favouriteTweet()    {
-        TwitterApiClient twitterApiClient = TwitterCore.getInstance().getApiClient();
-        FavoriteService statusesService = twitterApiClient.getFavoriteService();
-        Call<Tweet> call = statusesService.create(952937851800473600L, true);
-
-        call.enqueue(new Callback<Tweet>() {
-            @Override
-            public void success(Result<Tweet> result) {
-                Toast.makeText(Interactions.this, "Tweet has been favourited", Toast.LENGTH_SHORT).show();
-            }
-            public void failure(TwitterException exception) {
-                Toast.makeText(Interactions.this, "Something went wrong", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    private void unfavouriteTweet()  {
-        TwitterApiClient twitterApiClient = TwitterCore.getInstance().getApiClient();
-        FavoriteService statusesService = twitterApiClient.getFavoriteService();
-        Call<Tweet> call = statusesService.destroy(952937851800473600L, true);
-
-        call.enqueue(new Callback<Tweet>() {
-            @Override
-            public void success(Result<Tweet> result) {
-                Toast.makeText(Interactions.this, "Tweet has been unfavourited", Toast.LENGTH_SHORT).show();
-            }
-            public void failure(TwitterException exception) {
-                Toast.makeText(Interactions.this, "Something went wrong", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
 }

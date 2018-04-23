@@ -8,8 +8,8 @@ import android.util.Log;
 import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.ValueCallback;
-import android.widget.Toast;
 
+import com.muddzdev.styleabletoastlibrary.StyleableToast;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
 import com.twitter.sdk.android.core.Twitter;
@@ -37,7 +37,7 @@ public class MainActivity extends Activity {
             }
             @Override
             public void failure(TwitterException exception) {
-                Toast.makeText(MainActivity.this, R.string.AuthFail, Toast.LENGTH_LONG).show();
+                StyleableToast.makeText(MainActivity.this, "Authentication Failed", R.style.authFail).show();
             }
         });
     }
@@ -49,6 +49,7 @@ public class MainActivity extends Activity {
         Intent intent = new Intent(MainActivity.this, Profile.class);
 
         intent.putExtra("username", username);
+
         startActivity(intent);
     }
 
@@ -65,8 +66,6 @@ public class MainActivity extends Activity {
         }
         else cookieManager.removeAllCookie();
     }
-
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
