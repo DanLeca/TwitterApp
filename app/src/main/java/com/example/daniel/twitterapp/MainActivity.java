@@ -2,12 +2,7 @@ package com.example.daniel.twitterapp;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.webkit.CookieManager;
-import android.webkit.ValueCallback;
 
 import com.muddzdev.styleabletoastlibrary.StyleableToast;
 import com.twitter.sdk.android.core.Callback;
@@ -43,28 +38,12 @@ public class MainActivity extends Activity {
     }
 
     private void login(TwitterSession session) {
-        signOut(null);
-
         String username = session.getUserName();
         Intent intent = new Intent(MainActivity.this, Profile.class);
 
         intent.putExtra("username", username);
 
         startActivity(intent);
-    }
-
-    private void signOut(View view)  {
-        android.webkit.CookieManager cookieManager = CookieManager.getInstance();
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            cookieManager.removeAllCookies(new ValueCallback<Boolean>() {
-                @Override
-                public void onReceiveValue(Boolean logoutValue) {
-                    Log.d("LoggedOut", "LogoutValue: " + logoutValue);
-                }
-            });
-        }
-        else cookieManager.removeAllCookie();
     }
 
     @Override

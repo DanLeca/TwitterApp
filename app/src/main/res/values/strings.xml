@@ -19,6 +19,8 @@
     <string name="excludeMentions">Exclude Mentions</string>
     <string name="logOut">Log Out</string>
     <string name="aboutSection">About</string>
+    <string name="profileSection">Profile</string>
+    <string name="mentionsSection">Mentions</string>
     <string name="action_settings">Settings</string>
     <string name="noTweets">No Tweets</string>
     <string name="searchField">Search...</string>
