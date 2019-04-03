@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    android:id="@+id/profile_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="end"
+            android:layout_centerHorizontal="true"
+            android:ems="10"
+            android:hint="@string/searchField"
+            android:textColorHint="#000000"
+            android:inputType="text"
+            android:id="@+id/searchField"
+            android:visibility="visible"
+            android:background="#f5f5f5" />
+    </android.support.v7.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="@string/noTweets" />
+
+    <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/homeRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/my_toolbar">
+
+        <ListView
+            android:id="@+id/timelineView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:divider="#e1e8ed"
+            android:dividerHeight="1dp"
+            android:drawSelectorOnTop="false">
+        </ListView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/tweetButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="51dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginRight="13dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="createTweet"
+        app:srcCompat="@android:drawable/ic_menu_edit" />
+
+        <View
+            android:id="@+id/colored_bar"
+            android:layout_width="500dp"
+            android:layout_height="300dp"
+            android:layout_above="@+id/tweetButton"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="11dp"
+            android:background="@color/tw__composer_red"
+            android:visibility="invisible"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/popupDialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/colored_bar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="45dp"
+            android:visibility="invisible"
+            android:text="Make an Action" />
+
+        <Button
+            android:id="@+id/retweetButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/colored_bar"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="62dp"
+            android:layout_marginLeft="73dp"
+            android:layout_marginStart="73dp"
+            android:text="Retweet"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/replyButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/retweetButton"
+            android:layout_alignBottom="@+id/retweetButton"
+            android:layout_toLeftOf="@+id/tweetButton"
+            android:layout_toStartOf="@+id/tweetButton"
+            android:visibility="invisible"
+            android:text="Reply" />
+
+        <Button
+            android:id="@+id/likeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/retweetButton"
+            android:layout_alignLeft="@+id/retweetButton"
+            android:layout_alignStart="@+id/retweetButton"
+            android:layout_marginBottom="53dp"
+            android:visibility="invisible"
+            android:text="Like" />
+
+        <Button
+            android:id="@+id/deleteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/likeButton"
+            android:layout_alignBottom="@+id/likeButton"
+            android:layout_alignLeft="@+id/replyButton"
+            android:layout_alignStart="@+id/replyButton"
+            android:visibility="invisible"
+            android:text="Delete" />
+
+        <Button
+            android:id="@+id/dmButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/colored_bar"
+            android:layout_toEndOf="@+id/retweetButton"
+            android:layout_toRightOf="@+id/retweetButton"
+            android:text="Message"
+            android:visibility="invisible" />
+
+        <View
+            android:id="@+id/colored_bar2"
+            android:layout_width="500dp"
+            android:layout_height="300dp"
+            android:layout_above="@+id/tweetButton"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="11dp"
+            android:background="@color/tw__composer_red"
+            android:gravity="center"
+            android:visibility="invisible" />
+
+        <EditText
+            android:id="@+id/dmField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/retweetButton"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="21dp"
+            android:ems="10"
+            android:hint="Message..."
+            android:inputType="textLongMessage"
+            android:visibility="invisible"/>
+
+        <Button
+            android:id="@+id/sendDM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/replyButton"
+            android:layout_toEndOf="@+id/retweetButton"
+            android:layout_toRightOf="@+id/retweetButton"
+            android:visibility="invisible"
+            android:text="Send" />
+
+        <ImageButton
+            android:id="@+id/closeMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/tweetButton"
+            android:layout_alignRight="@+id/tweetButton"
+            android:layout_alignTop="@+id/popupDialog"
+            android:layout_marginEnd="19dp"
+            android:layout_marginRight="19dp"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/tw__composer_close" />
+
+        <ImageButton
+            android:id="@+id/closeDMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/tweetButton"
+            android:layout_alignRight="@+id/tweetButton"
+            android:layout_alignTop="@+id/popupDialog"
+            android:layout_marginEnd="19dp"
+            android:layout_marginRight="19dp"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/tw__composer_close" />
+
+        <EditText
+            android:id="@+id/dmUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:ems="10"
+            android:hint="Search for People.."
+            android:visibility="invisible" />
+
+    </RelativeLayout>
+</FrameLayout>
